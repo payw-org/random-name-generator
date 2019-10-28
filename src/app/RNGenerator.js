@@ -51,7 +51,7 @@ class RNGenerator{
 
         var noun , adjective
         
-        this.DBConnection.query(`SELECT noun FROM noun WHERE id = ${idOfNoun}`, (err, result, filed) =>{
+        this.DBConnection.query(`SELECT noun FROM noun WHERE _id = ${idOfNoun}`, (err, result, filed) =>{
             if(err){
                 console.error(err)
                 return false
@@ -60,7 +60,7 @@ class RNGenerator{
             noun = result[0].noun
         })
 
-        this.DBConnection.query(`SELECT adjective FROM adjective WHERE id = ${idOfAdjective}`, (err, result, filed) =>{
+        this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`, (err, result, filed) =>{
             if(err){
                 console.error(err)
                 return false

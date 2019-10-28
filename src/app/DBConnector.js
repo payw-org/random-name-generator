@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const mysql_config = require('../config/db.connect.config.js')
+const mysql_config = require('../config/db.connect.config')
 
 class DBConnector {
     

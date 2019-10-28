@@ -7,3 +7,5 @@ const env = {
         database: process.env.MYSQL_NAME
     }
 }
+
+module.exports = env

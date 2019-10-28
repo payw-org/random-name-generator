@@ -2,7 +2,7 @@ const mysql = require('mysql')
 const mysql_config = require('../config/db.connect.config')
 
 class DBConnector {
-    
+
     static connect(){
         this.connection = mysql.createConnection(mysql_config)
 

@@ -77,6 +77,6 @@ class RNGenerator{
     }
 }
 
-RNGenerator.getRandomName()
+console.log(RNGenerator.getRandomName())
 
 module.export = RNGenerator

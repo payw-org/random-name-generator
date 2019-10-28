@@ -14,7 +14,8 @@ class RNGenerator{
                 console.error(err)
                 return -1
             }
-
+            console.log(result[0])
+            console.log(result[0].count)
             return result[0].count
         })
     }

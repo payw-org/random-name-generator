@@ -45,6 +45,8 @@ class RNGenerator{
         if(numOfNoun == -1 || numOfAdjective == -1){
             return false
         }
+        console.log(numOfAdjective)
+        console.log(numOfNoun)
 
         var idOfNoun = Math.floor(Math.random()*numOfNoun)
         var idOfAdjective = Math.floor(Math.random()*numOfAdjective)

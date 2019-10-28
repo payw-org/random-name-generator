@@ -9,7 +9,7 @@ class RNGenerator{
             this.connectDB()
         }
 
-        this.DBConnection.query('SELECT COUNT(*) FROM noun AS count', (err, result, filed)=>{
+        this.DBConnection.query('SELECT COUNT(*) AS count FROM noun', (err, result, filed)=>{
             if(err){
                 console.error(err)
                 return -1
@@ -24,7 +24,7 @@ class RNGenerator{
             this.connectDB()
         }
 
-        this.DBConnection.query('SELECT COUNT(*) FROM adjective AS count', (err, result, filed)=>{
+        this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective', (err, result, filed)=>{
             if(err){
                 console.error(err)
                 return -1

@@ -4,7 +4,7 @@ class RNGenerator{
 
     static DBConnection
 
-    static getNumOfNoun(){
+    async static getNumOfNoun(){
         if(!this.DBConnection){
             this.connectDB()
         }
@@ -20,12 +20,12 @@ class RNGenerator{
         })
     }
 
-    static getNumOfAdjective(){
+    async static getNumOfAdjective(){
         if(!this.DBConnection){
             this.connectDB()
         }
 
-        this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective', (err, result, filed)=>{
+        await this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective', (err, result, filed)=>{
             if(err){
                 console.error(err)
                 return -1
@@ -35,13 +35,13 @@ class RNGenerator{
         })
     }
 
-    static getRandomName(){
+    async static getRandomName(){
         if(!this.DBConnection){
             this.connectDB()
         }
 
-        var numOfNoun = this.getNumOfNoun()
-        var numOfAdjective = this.getNumOfAdjective()
+        var numOfNoun = await this.getNumOfNoun()
+        var numOfAdjective = await this.getNumOfAdjective()
 
         if(numOfNoun == -1 || numOfAdjective == -1){
             return false

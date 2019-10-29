@@ -2,11 +2,9 @@ const DBConnector = require('./DBConnector.js')
 
 class RNGenerator{
 
-    static DBConnection
-
-    async static getNumOfNoun(){
+    static async getNumOfNoun(){
         if(!this.DBConnection){
-            this.connectDB()
+            await this.connectDB()
         }
 
         this.DBConnection.query('SELECT COUNT(*) AS count FROM noun', (err, result, filed)=>{
@@ -20,12 +18,12 @@ class RNGenerator{
         })
     }
 
-    async static getNumOfAdjective(){
+    static async getNumOfAdjective(){
         if(!this.DBConnection){
-            this.connectDB()
+            await this.connectDB()
         }
 
-        await this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective', (err, result, filed)=>{
+        this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective', (err, result, filed)=>{
             if(err){
                 console.error(err)
                 return -1
@@ -35,9 +33,9 @@ class RNGenerator{
         })
     }
 
-    async static getRandomName(){
+    static async getRandomName(){
         if(!this.DBConnection){
-            this.connectDB()
+            await this.connectDB()
         }
 
         var numOfNoun = await this.getNumOfNoun()
@@ -54,7 +52,7 @@ class RNGenerator{
 
         var noun , adjective
         
-        this.DBConnection.query(`SELECT noun FROM noun WHERE _id = ${idOfNoun}`, (err, result, filed) =>{
+        await this.DBConnection.query(`SELECT noun FROM noun WHERE _id = ${idOfNoun}`, (err, result, filed) =>{
             if(err){
                 console.error(err)
                 return false
@@ -63,7 +61,7 @@ class RNGenerator{
             noun = result[0].noun
         })
 
-        this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`, (err, result, filed) =>{
+        await this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`, (err, result, filed) =>{
             if(err){
                 console.error(err)
                 return false
@@ -75,8 +73,8 @@ class RNGenerator{
         return adjective+noun
     }
 
-    static connectDB(){
-        this.DBConnection = DBConnector.getConnection()
+    static async connectDB(){
+        this.DBConnection = await DBConnector.getConnection()
     }
 }
 

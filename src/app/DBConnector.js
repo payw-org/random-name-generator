@@ -3,10 +3,10 @@ const mysql_config = require('../config/db.connect.config')
 
 class DBConnector {
 
-    static connect(){
+    static async connect(){
         this.connection = mysql.createConnection(mysql_config)
 
-        this.connection.connect((err)=>{
+        await this.connection.connect((err)=>{
             if(err){
                 console.error('error connecting \n' + err.stack)
                 return
@@ -16,9 +16,9 @@ class DBConnector {
         })
     }
 
-    static getConnection (){
+    static async getConnection (){
         if(!this.connection){
-            this.connect()
+            await this.connect()
         }
         
         return this.connection

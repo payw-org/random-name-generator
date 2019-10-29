@@ -43,7 +43,7 @@ class RNGenerator{
         ;[ result ] = await this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`)
         adjective = result[0].adjective
         
-        return adjective + noun
+        return adjective + ' ' +  noun
     }
 
     static async connectDB(){
@@ -52,4 +52,4 @@ class RNGenerator{
     }
 }
 
-module.export = RNGenerator
+module.exports = RNGenerator

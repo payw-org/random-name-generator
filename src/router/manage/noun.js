@@ -5,11 +5,11 @@ router.get('/all',(req, res)=>{
     res.send(req.originalUrl)
 })
 
-router.post('/add/.*',(req, res)=>{
+router.post('/add/*',(req, res)=>{
     res.send(req.originalUrl)
 })
 
-router.get('/sub/.*',(req, res)=>{
+router.get('/sub/*',(req, res)=>{
     res.send(req.originalUrl)
 })
 

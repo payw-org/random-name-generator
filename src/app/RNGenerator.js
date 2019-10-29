@@ -7,13 +7,8 @@ class RNGenerator{
             await this.connectDB()
         }
 
-        await this.DBConnection.query('SELECT COUNT(*) AS count FROM noun', (err, result, filed)=>{
-            if(err){
-                console.error(err)
-                return -1
-            }
-            return result[0].count
-        })
+        const [ result ] = await this.DBConnection.query('SELECT COUNT(*) AS count FROM noun')
+        return result[0].count
     }
 
     static async getNumOfAdjective(){
@@ -21,14 +16,8 @@ class RNGenerator{
             await this.connectDB()
         }
 
-        await this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective', (err, result, filed)=>{
-            if(err){
-                console.error(err)
-                return -1
-            }
-
-            return result[0].count
-        })
+        const [ result ] = await this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective')
+        return result[0].count
     }
 
     static async getRandomName(){
@@ -42,40 +31,25 @@ class RNGenerator{
         if(numOfNoun == -1 || numOfAdjective == -1){
             return false
         }
-        console.log(numOfAdjective)
-        console.log(numOfNoun)
 
         var idOfNoun = Math.floor(Math.random()*numOfNoun)
         var idOfAdjective = Math.floor(Math.random()*numOfAdjective)
-
-        var noun , adjective
         
-        await this.DBConnection.query(`SELECT noun FROM noun WHERE _id = ${idOfNoun}`, (err, result, filed) =>{
-            if(err){
-                console.error(err)
-                return false
-            }
+        var result, noun , adjective
+        
+        ;[ result ] = await this.DBConnection.query(`SELECT noun FROM noun WHERE _id = ${idOfNoun}`)
+        noun = result[0].noun
 
-            noun = result[0].noun
-        })
-
-        await this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`, (err, result, filed) =>{
-            if(err){
-                console.error(err)
-                return false
-            }
-
-            adjective = result[0].adjective
-        })
-
-        return adjective+noun
+        ;[ result ] = await this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`)
+        adjective = result[0].adjective
+        
+        return adjective + noun
     }
 
     static async connectDB(){
+        console.log('get connection')
         this.DBConnection = await DBConnector.getConnection()
     }
 }
-
-console.log(await RNGenerator.getRandomName())
 
 module.export = RNGenerator

@@ -1,0 +1,6 @@
+CREATE TABLE `random_name`.`noun` (
+  `_id` INT NOT NULL AUTO_INCREMENT,
+  `noun` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;

@@ -19,5 +19,5 @@ app.get('*', (req, res) => {
 
 
 app.listen(3100, () => {
-    console.log('now listening 3000 port')
+    console.log('now listening 3100 port')
 })

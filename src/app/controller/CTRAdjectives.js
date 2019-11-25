@@ -1,8 +1,8 @@
-const DBConnector = require('../DBConnector')
+const DBConnection = require('../DBConnector').getConnection()
 
 async function selectAll(req, res) {
     try {
-        var [result] = await DBConnector.query(`SELECT * FROM adjectives`)
+        var [result] = await DBConnection.query(`SELECT * FROM adjectives`)
         return result
     } catch (e) {
         console.log(`>Error - ${e}`)
@@ -12,10 +12,10 @@ async function selectAll(req, res) {
 async function insertByName(req, res) {
     try {
         var name = req.body.name
-        var [result] = await DBConnector.query(`SELECT _id FROM adjectives WHERE name = '${name}'`)
+        var [result] = await DBConnection.query(`SELECT _id FROM adjectives WHERE name = '${name}'`)
 
         if (result.length === 0) {
-            await DBConnector.query(`INSERT INTO adjectives (name) VALUES (${name})`)
+            await DBConnection.query(`INSERT INTO adjectives (name) VALUES (${name})`)
             res.sendStatus(200)
         }
         else {// duplicate exist
@@ -29,10 +29,10 @@ async function insertByName(req, res) {
 async function deleteByName(req, res) {
     try {
         var name = req.body.name
-        var [result] = await DBConnector.query(`SELECT _id FROM adjectives WHERE name = '${name}'`)
+        var [result] = await DBConnection.query(`SELECT _id FROM adjectives WHERE name = '${name}'`)
 
         if (result.length !== 0) {
-            await DBConnector.query(`DELETE FROM adjectives WHERE _id = ${result[0]._id}`)
+            await DBConnection.query(`DELETE FROM adjectives WHERE _id = ${result[0]._id}`)
             res.sendStatus(200)
         }
         else { // not exist

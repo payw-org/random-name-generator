@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-const noun = require('./noun')
-const adjective = require('./adjective')
+const noun = require('./nouns')
+const adjective = require('./adjectives')
 
-router.use('/noun',noun)
-router.use('/adjective',adjective)
+router.use('/nouns', noun)
+router.use('/adjectives', adjective)
 
-router.get('/', (req, res)=>{
+router.get('/', (req, res) => {
     res.send(req.originalUrl)
 })
 

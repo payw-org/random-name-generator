@@ -6,9 +6,8 @@ const adjective = require('./adjectives')
 
 router.use('/nouns', noun)
 router.use('/adjectives', adjective)
-
-router.get('/', (req, res) => {
-    res.send(req.originalUrl)
+router.get('*', (req, res) => {
+    res.send('Invalid request on manage')
 })
 
 module.exports = router

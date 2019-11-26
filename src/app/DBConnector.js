@@ -3,10 +3,6 @@ const mysql_config = require('../config/db.connect.config')
 
 class DBConnector {
 
-    static async connect(){
-
-    }
-
     static async getConnection (){
         if(!this.connection){
             this.connection = await mysql.createPool(mysql_config)
@@ -14,7 +10,6 @@ class DBConnector {
         
         return this.connection
     }
-
 }
 
 module.exports = DBConnector

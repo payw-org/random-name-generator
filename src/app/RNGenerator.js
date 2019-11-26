@@ -20,6 +20,7 @@ class RNGenerator{
         indexOfAdjective = Math.floor(Math.random()*numOfAdjective)
         
         result = await DBNouns.selectByIndex(indexOfNoun)
+        console.log(result)
         noun = result[0].name
         result = await DBAdjectives.selectByIndex(indexOfAdjective)
         adjective = result[0].name

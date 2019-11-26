@@ -9,8 +9,12 @@ class RNGenerator{
         var indexOfNoun, indexOfAdjective
 
         result = await DBNouns.selectAllCount()
-        numOfNoun = result.count
+        console.log('noun Count')
+        console.log(result)
+        numOfNoun = result[0].count
         result = await DBAdjectives.selectAllCount()
+        console.log('adjective Count')
+        console.log(result)
         numOfAdjective = result.count
 
         if(numOfNoun == 0 || numOfAdjective == 0)
@@ -19,10 +23,17 @@ class RNGenerator{
         indexOfNoun = Math.floor(Math.random()*numOfNoun)
         indexOfAdjective = Math.floor(Math.random()*numOfAdjective)
         
+        console.log('indexOfNoun')
+        console.log(indexOfNoun)
+        console.log('indexOfAdjective')
+        console.log(indexOfAdjective)
         result = await DBNouns.selectByIndex(indexOfNoun)
+        console.log('selectByIndex')
         console.log(result)
         noun = result[0].name
         result = await DBAdjectives.selectByIndex(indexOfAdjective)
+        console.log('selectByIndex')
+        console.log(result)
         adjective = result[0].name
         
         return adjective + ' ' +  noun

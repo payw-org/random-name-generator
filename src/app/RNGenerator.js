@@ -9,13 +9,9 @@ class RNGenerator{
         var indexOfNoun, indexOfAdjective
 
         result = await DBNouns.selectAllCount()
-        console.log('noun Count')
-        console.log(result)
         numOfNoun = result[0].count
         result = await DBAdjectives.selectAllCount()
-        console.log('adjective Count')
-        console.log(result)
-        numOfAdjective = result.count
+        numOfAdjective = result[0].count
 
         if(numOfNoun == 0 || numOfAdjective == 0)
             return '고장난 서버'

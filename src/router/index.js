@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const RNGenerator = require('../app/RNGenerator')
 
 const manage = require('./manage')
 

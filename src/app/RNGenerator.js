@@ -7,7 +7,7 @@ class RNGenerator{
             await this.connectDB()
         }
 
-        const [ result ] = await this.DBConnection.query('SELECT COUNT(*) AS count FROM noun')
+        const [ result ] = await this.DBConnection.query('SELECT COUNT(*) AS count FROM nouns')
         return result[0].count
     }
 
@@ -16,7 +16,7 @@ class RNGenerator{
             await this.connectDB()
         }
 
-        const [ result ] = await this.DBConnection.query('SELECT COUNT(*) AS count FROM adjective')
+        const [ result ] = await this.DBConnection.query('SELECT COUNT(*) AS count FROM adjectives')
         return result[0].count
     }
 
@@ -37,10 +37,10 @@ class RNGenerator{
         
         var result, noun , adjective
         
-        ;[ result ] = await this.DBConnection.query(`SELECT name FROM noun WHERE _id = ${idOfNoun}`)
+        ;[ result ] = await this.DBConnection.query(`SELECT name FROM nouns WHERE _id = ${idOfNoun}`)
         noun = result[0].name
 
-        ;[ result ] = await this.DBConnection.query(`SELECT name FROM adjective WHERE _id = ${idOfAdjective}`)
+        ;[ result ] = await this.DBConnection.query(`SELECT name FROM adjectives WHERE _id = ${idOfAdjective}`)
         adjective = result[0].name
         
         return adjective + ' ' +  noun

@@ -6,7 +6,7 @@ class RNGenerator{
     static async getRandomName(){
         var result, noun, adjective
         var numOfNoun, numOfAdjective
-        var idOfNoun, idOfAdjective
+        var indexOfNoun, indexOfAdjective
 
         result = await DBNouns.selectAllCount()
         numOfNoun = result.count

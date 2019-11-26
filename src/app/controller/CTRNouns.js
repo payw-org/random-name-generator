@@ -16,6 +16,8 @@ async function insertByName(req, res) {
 }
 
 async function deleteByName(req, res) {
+    console.log('Delete query is requested')
+    console.log(req.body)
     var result = await DBNouns.deleteByName(req.body.name)
     if(result){
         res.sendStatus(200)

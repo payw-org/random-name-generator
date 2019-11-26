@@ -7,16 +7,16 @@ async function selectAll() {
     return result
 }
 
-async function selectNum(){
+async function selectAllCount(){
     var query = `SELECT COUNT(*) AS count FROM nouns`
 
     var result = await DB.query(query)
     return result
 }
 
-async function selectById(_id){
-    var query = `SELECT name FROM nouns WHERE _id = ?`
-    var values = [_id]
+async function selectByIndex(index){
+    var query = `SELECT name FROM nouns ORDER BY _id DESC LIMIT ?, 1`
+    var values = [index]
     var result = await DB.query(query, values)
     return result
 }
@@ -54,7 +54,7 @@ async function deleteByName(name) {
 }
 
 module.exports.selectAll = selectAll
-module.exports.selectNum = selectNum
-module.exports.selectById = selectById
+module.exports.selectAllCount = selectAllCount
+module.exports.selectByIndex = selectByIndex
 module.exports.insertByName = insertByName
 module.exports.deleteByName = deleteByName

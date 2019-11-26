@@ -8,20 +8,20 @@ class RNGenerator{
         var numOfNoun, numOfAdjective
         var idOfNoun, idOfAdjective
 
-        result = await DBNouns.selectNum()
+        result = await DBNouns.selectAllCount()
         numOfNoun = result.count
-        result = await DBAdjectives.selectNum()
+        result = await DBAdjectives.selectAllCount()
         numOfAdjective = result.count
 
         if(numOfNoun == 0 || numOfAdjective == 0)
             return '고장난 서버'
 
-        idOfNoun = Math.floor(Math.random()*numOfNoun)
-        idOfAdjective = Math.floor(Math.random()*numOfAdjective)
+        indexOfNoun = Math.floor(Math.random()*numOfNoun)
+        indexOfAdjective = Math.floor(Math.random()*numOfAdjective)
         
-        result = await DBNouns.selectById(idOfNoun)
+        result = await DBNouns.selectByIndex(indexOfNoun)
         noun = result[0].name
-        result = await DBAdjectives.selectById(idOfAdjective)
+        result = await DBAdjectives.selectByIndex(indexOfAdjective)
         adjective = result[0].name
         
         return adjective + ' ' +  noun

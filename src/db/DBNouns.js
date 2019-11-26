@@ -7,9 +7,23 @@ async function selectAll() {
     return result
 }
 
-async function insertByName(req, res) {
+async function selectNum(){
+    var query = `SELECT COUNT(*) AS count FROM nouns`
+
+    var result = await this.DB.query(query)
+    return result
+}
+
+async function selectById(_id){
+    var query = `SELECT name FROM nouns WHERE _id = ?`
+    var values = [_id]
+    var result = await this.DB.query(query, values)
+    return result
+}
+
+async function insertByName(name) {
     var query = `SELECT _id FROM nouns WHERE name = ?`
-    var values = [req.body.name]
+    var values = [name]
     
     var result = await DB.query(query, values)
 
@@ -23,9 +37,9 @@ async function insertByName(req, res) {
     return false
 }
 
-async function deleteByName(req, res) {
+async function deleteByName(name) {
     var query = `SELECT _id FROM nouns WHERE name = ?`
-    var values = [req.body.name]    
+    var values = [name]    
     var result = await DB.query(query, values)
 
     if (result.length !== 0) {
@@ -40,5 +54,7 @@ async function deleteByName(req, res) {
 }
 
 module.exports.selectAll = selectAll
+module.exports.selectNum = selectNum
+module.exports.selectById = selectById
 module.exports.insertByName = insertByName
 module.exports.deleteByName = deleteByName

@@ -7,6 +7,20 @@ async function selectAll() {
     return result
 }
 
+async function selectNum(){
+    var query = `SELECT COUNT(*) AS count FROM adjectives`
+
+    var result = await this.DB.query(query)
+    return result
+}
+
+async function selectById(_id){
+    var query = `SELECT name FROM adjectives WHERE _id = ?`
+    var values = [_id]
+    var result = await this.DB.query(query, values)
+    return result
+}
+
 async function insertByName(name) {
     var query = `SELECT _id FROM adjectives WHERE name = ?`
     var values = [name]
@@ -40,5 +54,7 @@ async function deleteByName(name) {
 }
 
 module.exports.selectAll = selectAll
+module.exports.selectNum = selectNum
+module.exports.selectById = selectById
 module.exports.insertByName = insertByName
 module.exports.deleteByName = deleteByName

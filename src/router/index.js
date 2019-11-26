@@ -9,7 +9,6 @@ router.use('/manage', manage)
 router.get('/new', async (req, res) => {
     const random_name = await RNGenerator.getRandomName()
     res.send(random_name)
-    console.log(`${req.originalUrl} is requested`)
 })
 router.get('*', (req, res) => {
     res.send('Invalid request')

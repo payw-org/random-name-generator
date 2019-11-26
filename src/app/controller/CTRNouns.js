@@ -6,9 +6,6 @@ async function selectAll(req, res) {
 }
 
 async function insertByName(req, res) {
-    console.log('insertByName is requested')
-    console.log(req)
-    console.log(req.body)
     var result = await DBNouns.insertByName(req.body.name)
     if(result){
         res.sendStatus(200)

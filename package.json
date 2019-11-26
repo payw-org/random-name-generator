@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "start-dist": "pm2 start npm --name 'api-rng-dist' -- run start",
+    "stop-dist": "pm2 stop 'api-rng-dist'",
+    "restart-dist": "npm run stop && npm run start"
   },
   "repository": {
     "type": "git",

@@ -10,14 +10,14 @@ async function selectAll() {
 async function selectNum(){
     var query = `SELECT COUNT(*) AS count FROM nouns`
 
-    var result = await this.DB.query(query)
+    var result = await DB.query(query)
     return result
 }
 
 async function selectById(_id){
     var query = `SELECT name FROM nouns WHERE _id = ?`
     var values = [_id]
-    var result = await this.DB.query(query, values)
+    var result = await DB.query(query, values)
     return result
 }
 

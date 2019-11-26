@@ -37,11 +37,11 @@ class RNGenerator{
         
         var result, noun , adjective
         
-        ;[ result ] = await this.DBConnection.query(`SELECT noun FROM noun WHERE _id = ${idOfNoun}`)
-        noun = result[0].noun
+        ;[ result ] = await this.DBConnection.query(`SELECT name FROM noun WHERE _id = ${idOfNoun}`)
+        noun = result[0].name
 
-        ;[ result ] = await this.DBConnection.query(`SELECT adjective FROM adjective WHERE _id = ${idOfAdjective}`)
-        adjective = result[0].adjective
+        ;[ result ] = await this.DBConnection.query(`SELECT name FROM adjective WHERE _id = ${idOfAdjective}`)
+        adjective = result[0].name
         
         return adjective + ' ' +  noun
     }

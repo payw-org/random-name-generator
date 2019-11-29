@@ -6,22 +6,35 @@ async function selectAll(req, res) {
 }
 
 async function insertByName(req, res) {
-    var result = await DBNouns.insertByName(req.body.name)
-    if(result){
-        res.sendStatus(200)
+
+    if(req.body.masteKey==config.password){
+
+        var result = await DBNouns.insertByName(req.body.name)
+        if(result){
+            res.sendStatus(200)
+        }
+        else{
+            res.send(`${req.body.name} is already exist`)        
+        }
     }
     else{
-        res.send(`${req.body.name} is already exist`)        
+        res.send(`password is wrong`)  
     }
 }
 
 async function deleteByName(req, res) {
-    var result = await DBNouns.deleteByName(req.body.name)
-    if(result){
-        res.sendStatus(200)
+    if(req.body.masteKey==config.password){
+
+        var result = await DBNouns.deleteByName(req.body.name)
+        if(result){
+            res.sendStatus(200)
+        }
+        else{
+            res.send(`${req.body.name} is not exist`)        
+        }
     }
     else{
-        res.send(`${req.body.name} is not exist`)        
+        res.send(`password is wrong`)  
     }
 }
 

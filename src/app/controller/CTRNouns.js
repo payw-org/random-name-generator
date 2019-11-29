@@ -8,7 +8,6 @@ async function selectAll(req, res) {
 async function insertByName(req, res) {
 
     if(req.body.masteKey==config.password){
-
         var result = await DBNouns.insertByName(req.body.name)
         if(result){
             res.sendStatus(200)
@@ -24,7 +23,6 @@ async function insertByName(req, res) {
 
 async function deleteByName(req, res) {
     if(req.body.masteKey==config.password){
-
         var result = await DBNouns.deleteByName(req.body.name)
         if(result){
             res.sendStatus(200)

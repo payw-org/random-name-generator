@@ -1,4 +1,5 @@
 const DBNouns = require('../../db/DBNouns')
+const config = require('../../config/db.connect.config');
 
 async function selectAll(req, res) {
     var result = await DBNouns.selectAll()
